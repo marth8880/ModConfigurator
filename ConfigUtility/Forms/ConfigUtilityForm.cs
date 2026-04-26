@@ -368,8 +368,8 @@ namespace ConfigUtility
 
 		void MungeChanges()
 		{
-			string tmpDir = Directory.GetCurrentDirectory().Substring(0, 2) + "\\Temp\\tempModConfiguratorMungeFolder";
-			Directory.CreateDirectory(tmpDir);
+			string tmpDir = Path.Combine(Path.GetTempPath(), "ConfigUtilityTemp");	// fixes permission exceptions in Wine
+            Directory.CreateDirectory(tmpDir);
 
 			string luaScriptFileName = modConfig.mungedScriptFileName + ".lua";
 			string luaScriptPath = tmpDir + "\\" + luaScriptFileName;
